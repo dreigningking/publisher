@@ -19,3 +19,7 @@ Route::get('/', function () {
 Route::get('/index', function () {
     return view('index');
 });
+Route::view('create','createpost')->name('storepost');
+Route::view('subscribe','subscribe')->name('subscribe');
+Route::post('storepost',[App\Http\Controllers\PostController::class,'store'])->name('storepost');
+Route::post('subscribe',[App\Http\Controllers\PostController::class,'subscribe'])->name('subscribe');
