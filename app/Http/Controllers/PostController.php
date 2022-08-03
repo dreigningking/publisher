@@ -12,7 +12,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'website_id' => 'required|string',
+            'website_id' => 'required|numeric|exists:websites,id',
             'title' => 'required|string',
             'description' => 'required|string',
         ]);
@@ -27,8 +27,8 @@ class PostController extends Controller
     public function subscribe(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'user_id' => 'required|string',
-            'website_id' => 'required|string',
+            'user_id' => 'required|numeric|exists:users,id',
+            'website_id' => 'required|numeric|exists:users,id',
         ]);
         if($validation->fails()){
             return response()->json(json_decode($validation->errors(), true),400);
